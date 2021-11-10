@@ -1,4 +1,5 @@
 <div class="w-full">
+<<<<<<< HEAD
   <%# <% if notice.present? %1> %>
   <%#   <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %1></p> %>
   <%# <% end %1> %>
@@ -14,5 +15,18 @@
 
   <div class="flex justify-between items-center flex-col">
     <h1 class="text-center font-bold font
+=======
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="text-lg font-bold text-4xl">Posts</h1>
+    <%= link_to 'New post', new_post_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="posts" class="min-w-full">
+    <%= render @posts %>
+>>>>>>> 0550685dbe3bb9c3ff3aa298a3def16317b458f2
   </div>
 </div>
