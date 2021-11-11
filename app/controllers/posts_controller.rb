@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 # frozen_string_literal: true
 
 # :nodoc:
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-=======
-class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
->>>>>>> 0550685dbe3bb9c3ff3aa298a3def16317b458f2
 
   # GET /posts or /posts.json
   def index
@@ -15,12 +10,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1 or /posts/1.json
-<<<<<<< HEAD
   def show; end
-=======
-  def show
-  end
->>>>>>> 0550685dbe3bb9c3ff3aa298a3def16317b458f2
 
   # GET /posts/new
   def new
@@ -28,12 +18,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-<<<<<<< HEAD
   def edit; end
-=======
-  def edit
-  end
->>>>>>> 0550685dbe3bb9c3ff3aa298a3def16317b458f2
 
   # POST /posts or /posts.json
   def create
@@ -73,7 +58,6 @@ class PostsController < ApplicationController
   end
 
   private
-<<<<<<< HEAD
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
@@ -84,15 +68,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :category_id, :picture)
   end
-=======
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body, :category_id)
-    end
->>>>>>> 0550685dbe3bb9c3ff3aa298a3def16317b458f2
 end

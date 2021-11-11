@@ -9,16 +9,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +6 config/routes.rb
-badd +0 app/models/post.rb
-badd +0 app/controllers/posts_controller.rb
-badd +12 app/components/post_preview_component.rb
-badd +4 app/components/post_preview_component.html.erb
-badd +0 app/views/posts/index.html.erb
+badd +1 app/models/post.rb
+badd +1 app/controllers/posts_controller.rb
+badd +5 app/components/post_preview_component.rb
+badd +11 app/components/post_preview_component.html.erb
+badd +1 app/views/posts/index.html.erb
+badd +0 app/models/category.rb
 argglobal
 %argdel
 $argadd config/routes.rb
 set stal=2
-tabnew
 tabnew
 tabnew
 tabnew
@@ -36,12 +36,32 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 6 - ((5 * winheight(0) + 22) / 45)
+let s:l = 8 - ((7 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
-normal! 037|
+keepjumps 8
+normal! 03|
+tabnext
+edit app/models/category.rb
+argglobal
+balt config/routes.rb
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 23) / 47)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
 tabnext
 edit app/controllers/posts_controller.rb
 argglobal
@@ -56,12 +76,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 68 - ((41 * winheight(0) + 22) / 45)
+let s:l = 17 - ((0 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 68
-normal! 017|
+keepjumps 17
+normal! 0
 tabnext
 edit app/models/post.rb
 argglobal
@@ -76,12 +96,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 5 - ((4 * winheight(0) + 22) / 45)
+let s:l = 7 - ((6 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 5
-normal! 027|
+keepjumps 7
+normal! 03|
 tabnext
 edit app/views/posts/index.html.erb
 argglobal
@@ -96,53 +116,13 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 16 - ((15 * winheight(0) + 22) / 45)
+let s:l = 17 - ((16 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 16
-normal! 041|
-tabnext
-edit app/components/post_preview_component.html.erb
-argglobal
-balt app/views/posts/index.html.erb
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 11 - ((10 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 11
-normal! 015|
-tabnext
-edit app/components/post_preview_component.rb
-argglobal
-balt app/components/post_preview_component.html.erb
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 5 - ((4 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 5
-normal! 08|
-tabnext 6
+keepjumps 17
+normal! 0
+tabnext 3
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
