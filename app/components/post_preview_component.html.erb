@@ -1,11 +1,12 @@
-<turbo-frames class="flex flex-col sm:flex-row rounded border-black">
-  <%= @picture %>
-  <div class="flex flex-col">  
-    <div class="font-light tracking-wide sm:tracking-widest sm:font-extralight antialised">
+<div class="flex flex-col sm:flex-row rounded border-black <%= @background %>">
+  <div class="w-52 h-52"><%= @picture %></div>
+    <div class="flex flex-col">  
+    <div
+      class="font-light text-gray-900 dark:text-gray-100 tracking-wide sm:tracking-widest sm:font-extralight text-2xl sm:text-3xl antialised">
       <%= @title %>
     </div>
-    <div class="text-base lg:text-lg antialised">
+    <div class="text-base text-gray-800 dark:text-gray-200 lg:text-lg antialised text-lg">
       <%= @body %>
     </div>
   </div>
-</turbo-frames>
+</div>

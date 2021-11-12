@@ -1,0 +1,9 @@
+.mx-auto.w-full.flex{:class => "md:w-2/3"}
+  .mx-auto
+    - if notice.present?
+      %p#notice.py-2.px-3.bg-green-50.mb-5.text-green-500.font-medium.rounded-lg.inline-block= notice
+    = render @post
+    = link_to 'Edit this post', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+    .inline-block.ml-2
+      = button_to 'Delete this post', post_path(@post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium"
+    = link_to 'Back to posts', posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"

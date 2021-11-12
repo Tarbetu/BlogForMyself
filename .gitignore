@@ -35,5 +35,6 @@
 yarn-debug.log*
 .yarn-integrity
 
-# Ignoring the Session.vim
+# Ignoring the Session.vim and my checklist
 Session.vim
+yapılacak.txt

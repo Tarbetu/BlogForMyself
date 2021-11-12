@@ -1,0 +1,6 @@
+.flex.justify-between.items-center.flex-col.w-full
+  - @posts.each do |post|
+    = turbo_frame_tag("post#{post.id}-preview") do
+      = render PostPreviewComponent.new( title: post.title,
+        body: post.preview_text,
+        picture: post.picture )

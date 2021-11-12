@@ -21,10 +21,14 @@ gem 'jbuilder', '~> 2.7'
 ## gem 'bcrypt', '~> 3.1.7'
 
 # The Best Stack
+gem "haml-rails", "~> 2.0" # I hate ERB.
+gem "hotwire-rails" # Everytime I write this, I feel like I'm betraying DHH.
 gem "tailwindcss-rails", "~> 0.5.1"
-# Everytime I write this, I feel like I'm betraying DHH.
 gem "view_component"
-gem "hotwire-rails"
+
+# Some improvement
+gem 'pg_query'
+gem 'prosopite'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

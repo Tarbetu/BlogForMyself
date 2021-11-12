@@ -4,6 +4,16 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
+  unless Rails.env.production?
+    before_action do
+      Prosopite.scan
+    end
+
+    after_action do
+      Prosopite.finish
+    end
+  end
+
   # GET /posts or /posts.json
   def index
     @posts = Post.all
