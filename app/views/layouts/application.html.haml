@@ -11,7 +11,8 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   %body.dark:bg-black.dark:bg-opacity-90
-    = render NavbarComponent.new do
+    - navigation = [link_to("Anasayfa", root_path), link_to("Hakkında", "#"), link_to("İletişim", "#")]
+    = render NavbarComponent.new(list_of_links: navigation) do
       anan :d
     %main.container.mx-auto.mt-28.px-5.flex
       = yield

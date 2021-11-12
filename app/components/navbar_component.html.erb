@@ -1,6 +1,9 @@
-<nav class="flex bg-black dark:bg-gray-700 overflow-hidden invisible sm:visible">
-  <%= render LinkComponent.new(title: "Anasayfa", link: "#") %>
-  <%= render LinkComponent.new(title: "Hakkımda", link: "#") %>
-  <%= render LinkComponent.new(title: "İletişim", link: "#") %>
+<nav 
+  class="flex justify-between bg-black border-b dark:border-gray-700 overflow-hidden p-2 text-gray-200">
+  <div class="div flex-col sm:flex-row">
+    <% @list_of_links.each do |link| %>
+      <%= render LinkComponent.new.with_content(link) %>
+    <% end %>
+    <% content %>
+  </div>
 </nav>
-<%= content %>

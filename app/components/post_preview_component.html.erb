@@ -5,8 +5,11 @@
       class="font-light text-gray-900 dark:text-gray-100 tracking-wide sm:tracking-widest sm:font-extralight text-2xl sm:text-3xl antialised">
       <%= @title %>
     </div>
-    <div class="text-base text-gray-800 dark:text-gray-200 lg:text-lg antialised text-lg">
-      <%= @body %>
+    <div class="flex flex-col justify-between text-gray-700 dark:text-gray-200">
+      <div class="text-base lg:text-lg antialised text-lg">
+        <%= @body %>
+      </div>
+      <%= content %>
     </div>
   </div>
 </div>
