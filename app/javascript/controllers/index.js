@@ -3,11 +3,5 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller.js"
-application.register("hello", HelloController)
-
 import NavbarController from "./navbar_controller.js"
 application.register("navbar", NavbarController)
-
-const componentContext = require.context("../../components/", true, /(.*)\/.+\.js$/);
-application.load(definitionsFromContext(componentContext));

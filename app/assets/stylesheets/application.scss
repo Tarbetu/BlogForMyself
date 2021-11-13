@@ -13,4 +13,11 @@
  *= require_tree .
  *= require_self
  */
-@import "./actiontext.scss"
+@import "./actiontext.scss";
+
+@media screen and (prefers-color-scheme: dark) {
+  trix-toolbar .trix-button--icon {
+    filter: invert(100%);
+  }
+}
+

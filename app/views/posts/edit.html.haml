@@ -1,5 +1,4 @@
 .container
   = render HeaderComponent.new.with_content("#{@post.title} düzenleniyor.")
-  = form_with model: @post do |form|
-    = form.rich_text_area :body
+  = render "form", post: @post
   = render LinkComponent.new.with_content(link_to "Neye benziyor?", @post)

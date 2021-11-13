@@ -8,7 +8,8 @@ import "channels"
 import { Turbo, cable } from "@hotwired/turbo-rails"
 import "../controllers"
 
-ActiveStorage.start()
-
 require("trix")
 require("@rails/actiontext")
+
+ActiveStorage.start()
+
