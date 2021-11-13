@@ -9,13 +9,12 @@ class Post < ApplicationRecord
   has_one_attached :picture
 
   def preview_text
-    # limit = if body.include? "\n"
-    #           body.index "\n"
-    #         else
-    #           400
-    #         end
-    # body[0..limit]
-    limit = 400
-    body[0..limit]
+    plain_text = body.to_plain_text
+    limit = if plain_text.include? "\n"
+              plain_text.index "\n"
+            else
+              400
+            end
+    plain_text[0..limit]
   end
 end
