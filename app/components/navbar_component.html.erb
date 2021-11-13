@@ -1,19 +1,23 @@
 <nav 
-  class="flex justify-between bg-black border-b border-gray-100 dark:border-gray-700 overflow-hidden p-2 text-gray-200">
-  <div class="flex flex-row sm:flex-row container invisible sm:visible">
-    <% @list_of_links.each_with_index do |link| %>
-      <%= render LinkComponent.new.with_content(link) %>
-    <% end %>
-  </div>
-  <%# Alttakinin görüntüye etki etmemesi lazım. %> 
-  <div class="visible sm:invisible">
-    Menü
+  class="flex justify-between bg-black border-b border-gray-100 dark:border-gray-700 p-2 text-gray-200"
+  data-controller="navbar">
+  <div class="container">
+    <div class="flex sm:hidden" data-action="click->navbar#toggleMenu">
+      <%= render LinkComponent.new.with_content(
+        render MenuIconComponent.new
+      ) %>
+    </div> 
+    <div class="hidden sm:flex flex-col sm:flex-row container" data-navbar-target="menu">
+      <% @list_of_links.each_with_index do |link| %>
+        <%= render LinkComponent.new.with_content(link) %>
+      <% end %>
+    </div>
   </div>
   <%#
       my-px and p-1 classes also used in Links Component.
       Ok, but this is not best practice.
   %>
-  <div class="my-px p-1">
+  <div class="my-px p-1 container text-right">
     <%= content %>
   </div>
 </nav> 
