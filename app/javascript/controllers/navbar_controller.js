@@ -10,6 +10,6 @@ export default class extends Controller {
 
   // Toggles the navigation menu for mobile
   toggleMenu() {
-    ["hidden", "flex"] => this.menuTarget.classList.toggle(i)
+    ["hidden", "flex"].forEach((i) => this.menuTarget.classList.toggle(i))
   }
 }
