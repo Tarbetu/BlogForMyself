@@ -14,7 +14,8 @@
     - navigation = [link_to("Anasayfa", root_path), 
       link_to("Hakkında", "#"), 
       link_to("İletişim", "#")]
-    = render NavbarComponent.new(list_of_links: navigation) do
+    - categories = Category.all.map { |category| link_to category.name, category }
+    = render NavbarComponent.new(list_of_links: navigation + categories) do
       anan :d
     %main.container.mx-auto.mt-28.px-5.flex
       = yield

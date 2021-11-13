@@ -1,5 +1,5 @@
-.mx-auto.w-full{:class => "md:w-2/3"}
-  %h1.font-bold.text-4xl Editing post
-  = render "form", post: @post
-  = link_to "Show this post", @post, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
-  = link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+.container
+  = render HeaderComponent.new.with_content("#{@post.title} düzenleniyor.")
+  = form_with model: @post do |form|
+    = form.rich_text_area :body
+  = render LinkComponent.new.with_content(link_to "Neye benziyor?", @post)
