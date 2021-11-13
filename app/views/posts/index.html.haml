@@ -1,5 +1,7 @@
 .flex.justify-between.items-center.flex-col.w-full
-  - @posts.each do |post|
-    = render PostPreviewComponent.new( title: post.title,
-      body: post.preview_text,
-      picture: post.picture ).with_content(link_to "...devamı", post)
+  - @posts.each_with_index do |post, index|
+    = turbo_frame_tag("postPreview#{index}") do
+      = render PostPreviewComponent.new(title: post.title,
+        body: post.preview_text,
+        picture: post.picture,
+      ).with_content(link_to "...devamı", post, "data-turbo-frame":"_top")

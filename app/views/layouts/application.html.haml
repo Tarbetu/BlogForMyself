@@ -10,8 +10,10 @@
     = stylesheet_link_tag "tailwind", "data-turbo-track": "reload"
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
-  %body.dark:bg-black.dark:bg-opacity-90
-    - navigation = [link_to("Anasayfa", root_path), link_to("Hakkında", "#"), link_to("İletişim", "#")]
+  %body.dark:bg-black.dark:bg-opacity-90.dark:text-gray-100
+    - navigation = [link_to("Anasayfa", root_path), 
+      link_to("Hakkında", "#"), 
+      link_to("İletişim", "#")]
     = render NavbarComponent.new(list_of_links: navigation) do
       anan :d
     %main.container.mx-auto.mt-28.px-5.flex
