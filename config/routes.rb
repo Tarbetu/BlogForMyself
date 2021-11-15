@@ -3,6 +3,6 @@
 Rails.application.routes.draw do
   root "posts#index"
 
-  resources :kategoriler, controller: :categories, as: :categories
-  resources :gonderiler, controller: :posts, as: :posts
+  resources :kategori, controller: :categories, as: :categories
+  resources :gonderi, controller: :posts, as: :posts
 end
