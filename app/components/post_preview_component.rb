@@ -14,10 +14,10 @@ COLORS = [
 
 # :nodoc:
 class PostPreviewComponent < ViewComponent::Base
-  def initialize(title:, body:, picture:)
-    @title      = title
-    @body       = body
-    @picture    = picture
-    @background = COLORS.sample
+  def initialize(post:)
+    @post         = post
+    @preview_text = post.preview_text
+    @picture      = nil # Just for now
+    @background   = COLORS.sample
   end
 end

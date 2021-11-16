@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-# :nodoc:
+# The "Gonderi" routes the URL into the Posts controller.
+# Look for the Post model for more information.
+# When creating a new post, Turbo Streams should update the Posts lists component.
+# While editing or creating a new post, the post must be auto-saved by server.
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
@@ -14,23 +17,23 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts or /posts.json
+  # GET /gonderi or /gonderi.json
   def index
     @posts = Post.all.reverse
   end
 
-  # GET /posts/1 or /posts/1.json
+  # GET /gonderi/1 or /gonderi/1.json
   def show; end
 
-  # GET /posts/new
+  # GET /gonderi/new
   def new
     @post = Post.new
   end
 
-  # GET /posts/1/edit
+  # GET /gonderi/1/edit
   def edit; end
 
-  # POST /posts or /posts.json
+  # POST /gonderi or /gonderi.json
   def create
     @post = Post.new(post_params)
 
@@ -45,7 +48,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
+  # PATCH/PUT /gonderi/1 or /gonderi/1.json
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -58,11 +61,11 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
+  # DELETE /gonderi/1 or /gonderi/1.json
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to gonderi_url, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
   end

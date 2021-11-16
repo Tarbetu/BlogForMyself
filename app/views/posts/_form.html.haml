@@ -1,5 +1,5 @@
-.container
+.container.my-6
   = form_with model: post do |form|
     .container
-      = form.rich_text_area :body, class: "dark:bg-black h-3/4"
+      = form.rich_text_area :body, class: "dark:bg-black"
       = form.submit "Kaydet", class: "hover:bg-pink-100 hover:text-red-900 text-white bg-black m-1 p-1 rounded"

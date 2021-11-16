@@ -1,4 +1,4 @@
 .container
-  = render HeaderComponent.new.with_content("#{@post.title} düzenleniyor.")
-  = render "form", post: @post
+  .text-center= render HeaderComponent.new.with_content("#{@post.title} düzenleniyor.")
+  = render "form", model: @post
   = render LinkComponent.new.with_content(link_to "Neye benziyor?", @post)

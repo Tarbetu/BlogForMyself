@@ -1,5 +1,6 @@
 .container
-  %p.container= @post.picture
+  -# Resimleri güncelle
+  %p.container= nil
   .text-center.my-6= render HeaderComponent.new.with_content(@post.title)
   %article.p-3.text-medium.trix-content.bg-gray-300.dark:bg-black.antialised.rounded= @post.body
 -# Yorumlar eklenecek ;)
