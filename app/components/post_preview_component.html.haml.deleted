@@ -1,0 +1,9 @@
+= helpers.turbo_frame_tag dom_id(@post)
+  .flex.flex-col.sm:flex-row.rounded.border-black.#{@background}
+    .w-52.h-52= @picture
+    .flex.flex-col
+      = render HeaderComponent.new.with_content(@post.title)
+      .flex.flex-col.justify-between.text-gray-700.dark:text-gray-200
+        .text-base.antialised.text-lg= @preview_text
+        = link_to "...devamı", @post, "data-turbo-frame":"_top"
+

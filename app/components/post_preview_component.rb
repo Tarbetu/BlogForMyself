@@ -14,6 +14,8 @@ COLORS = [
 
 # :nodoc:
 class PostPreviewComponent < ViewComponent::Base
+  with_collection_parameter :post
+
   def initialize(post:)
     @post         = post
     @preview_text = post.preview_text

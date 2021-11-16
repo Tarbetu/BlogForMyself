@@ -28,7 +28,7 @@ class Post < ApplicationRecord
     broadcast_append_to(
       "postList",
       html: ApplicationController.render(
-        PostPreviewComponent.new(title: title, body: preview_text, picture: nil)
+        PostPreviewComponent.new(self)
       )
     )
   end

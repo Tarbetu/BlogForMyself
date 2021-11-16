@@ -2,14 +2,15 @@
   <div 
     class="flex flex-col sm:flex-row rounded border-black <%= @background %>" >
     <div class="w-52 h-52"><%= @picture %></div>
-      <div class="flex flex-col">  
-        <%= render HeaderComponent.new.with_content(@post.title) %>
-        <div class="flex flex-col justify-between text-gray-700 dark:text-gray-200">
-          <div class="text-base lg:text-lg antialised text-lg">
-            <%= @post.body %>
-          </div>
-          <%= link_to "...devamı", @post, "data-turbo-frame":"_top" %>
+    <div class="flex flex-col">  
+      <%= render HeaderComponent.new.with_content(@post.title) %>
+      <div class="flex flex-col justify-between text-gray-700 dark:text-gray-200">
+        <div class="text-base lg:text-lg antialised text-lg">
+          <%= @preview_text %>
         </div>
-    </div>
-  </div>
+        <%= link_to "...devamı", @post, "data-turbo-frame":"_top" %>
+  <%# It seems the these tags breaks something with turbo_frame_tag %>
+      <%# </div> %>
+    <%# </div> %>
+  <%# </div> %>
 <% end %>
