@@ -14,12 +14,17 @@ class Post < ApplicationRecord
 
   def preview_text
     plain_text = body.to_plain_text
-    limit = if plain_text.include? "\n"
-              plain_text.index "\n"
-            else
-              400
-            end
-    plain_text[0..limit]
+    return plain_text[0..400] unless plain_text.include? "\n"
+
+    plain_text = plain_text.split("\n")
+
+    plain_text.each do |i|
+      next if i.blank?
+      return i unless i.starts_with?("[") && i.ends_with?("]")
+    end
+
+    # Turkish: Error while creating post preview
+    "Gönderi ön izlemesi oluşturulurken hata oluştu"
   end
 
   private
@@ -28,7 +33,7 @@ class Post < ApplicationRecord
     broadcast_append_to(
       "postList",
       html: ApplicationController.render(
-        PostPreviewComponent.new(self)
+        PostPreviewComponent.new(post: self)
       )
     )
   end

@@ -8,6 +8,7 @@
       ) %>
     </div> 
     <div class="hidden sm:flex flex-col sm:flex-row container" data-navbar-target="menu">
+      <%= render LinkComponent.new.with_content(link_to "Anasayfa", root_path) %>
       <% @list_of_links.each_with_index do |link| %>
         <%= render LinkComponent.new.with_content(link) %>
       <% end %>
@@ -17,7 +18,7 @@
       my-px and p-1 classes also used in Links Component.
       Ok, but this is not best practice.
   %>
-  <div class="my-px p-1 container text-right">
-    <%= content %>
+  <div class="p-1 text-right">
+    <%= render LinkComponent.new.with_content(content) %>
   </div>
 </nav> 

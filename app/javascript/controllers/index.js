@@ -3,6 +3,9 @@
 
 import { application } from "./application"
 
+import EditorController from "./editor_controller.js"
+application.register("editor", EditorController)
+
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 

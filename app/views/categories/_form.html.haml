@@ -1,14 +1,5 @@
-= form_with(model: category, class: "contents") do |form|
-  - if category.errors.any?
-    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
-      %h2
-        = pluralize(category.errors.count, "error")
-        prohibited this category from being saved:
-      %ul
-        - category.errors.each do |error|
-          %li= error.full_message
-  .my-5
-    = form.label :name
-    = form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
-  .inline
-    = form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium"
+= form_with model: category do |form|
+  .flex.justify-between
+    -# Shhh... These classes are copied :')
+    = form.text_field :name, class: "bg-transparent hover:bg-gray-200 hover:text-black border-0 border-b-2 m-2 tracking-widest font-light text-2xl"
+    = form.submit "Kaydet", class: "hover:bg-pink-100 hover:text-red-900 text-white bg-black p-2 rounded antialised"
