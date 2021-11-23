@@ -36,5 +36,7 @@ yarn-debug.log*
 .yarn-integrity
 
 # Ignoring the Session.vim and my checklist
+# Also, I don't want to share my fallback picture with you.
 Session.vim
 yapılacak.txt
+app/assets/images/fallback_picture.jpg

@@ -2,7 +2,6 @@
 
 # The "Gonderi" routes the URL into the Posts controller.
 # Look for the Post model for more information.
-# When creating a new post, Turbo Streams should update the Posts lists component.
 # While editing or creating a new post, the post must be auto-saved by server.
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]

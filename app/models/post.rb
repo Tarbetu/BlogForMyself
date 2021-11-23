@@ -12,6 +12,8 @@ class Post < ApplicationRecord
 
   after_create_commit :append_new_post
 
+  # The main problem with these methods causes N+1 queries.
+  # The "ActiveText" things cause this.
   def preview_text
     plain_text = body.to_plain_text
     return plain_text[0..400] unless plain_text.include? "\n"
@@ -27,14 +29,9 @@ class Post < ApplicationRecord
     "Gönderi ön izlemesi oluşturulurken hata oluştu"
   end
 
-  private
+  def preview_image
+    picture = body.embeds.find(&:image?)
 
-  def append_new_post
-    broadcast_append_to(
-      "postList",
-      html: ApplicationController.render(
-        PostPreviewComponent.new(post: self)
-      )
-    )
+    picture || "fallback_picture.jpg"
   end
 end
