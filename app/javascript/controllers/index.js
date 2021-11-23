@@ -11,3 +11,6 @@ application.register("hello", HelloController)
 
 import NavbarController from "./navbar_controller.js"
 application.register("navbar", NavbarController)
+
+import ScrollerController from "./scroller_controller.js"
+application.register("scroller", ScrollerController)

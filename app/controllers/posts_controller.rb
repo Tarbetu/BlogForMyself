@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   # GET /gonderi or /gonderi.json
   def index
-    @posts = Post.all.reverse
+    @pagy, @posts = pagy Post.all
   end
 
   # GET /gonderi/1 or /gonderi/1.json

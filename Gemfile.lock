@@ -128,6 +128,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
+    pagy (5.5.0)
     pg (1.2.3)
     pg_query (2.1.1)
       google-protobuf (>= 3.17.1)
@@ -251,6 +252,7 @@ DEPENDENCIES
   image_processing (~> 1.12)
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  pagy (~> 5.5)
   pg (~> 1.1)
   pg_query
   prosopite

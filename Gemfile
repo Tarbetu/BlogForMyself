@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # The Best Stack
 gem "haml-rails", "~> 2.0" # I hate ERB.
 gem "hotwire-rails" # Everytime I write this, I feel like I'm betraying DHH.
+gem "pagy", "~> 5.5"
 gem "tailwindcss-rails", "~> 0.5.1"
 gem "view_component"
 
