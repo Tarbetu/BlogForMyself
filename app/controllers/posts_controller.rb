@@ -19,6 +19,20 @@ class PostsController < ApplicationController
   # GET /gonderi or /gonderi.json
   def index
     @pagy, @posts = pagy Post.all
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          posts: render_to_string(
+            PostListComponent.new(posts: @posts, pagy: @pagy),
+            formats: [:html],
+            layout: false
+          ),
+          pagy: view_context.pagy_nav(@pagy)
+        }
+      end
+    end
   end
 
   # GET /gonderi/1 or /gonderi/1.json

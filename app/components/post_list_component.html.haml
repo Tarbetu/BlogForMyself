@@ -1,3 +1,3 @@
-.flex.flex-col.justify-center.items-center.container#postList{ "data-controller": "scroller" }
+.flex.flex-col.justify-center.items-center.container#postList{ "data-controller": "scroller", "data-action":"scroll@window->scroller#scrollIt" }
   %div{"data-scroller-target": "posts"}= render PostPreviewComponent.with_collection(@posts)
   .hidden{"data-scroller-target": "pagy"}= raw helpers.pagy_nav(@pagy)
