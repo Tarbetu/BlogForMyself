@@ -6,6 +6,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="scroller"
 export default class extends Controller {
   static targets = ["posts", "pagy"]
+  static values  = { page: Number }
 
   // İşin yoksa fetch yaz :(
   scrollIt() {
@@ -23,17 +24,11 @@ export default class extends Controller {
       html.offsetHeight
     )
 
-    if (window.pageYOffset >= height - window.innerHeight - 100) {
-      this.loadMore(url)
-      this.scrollToUp()
+    if (window.pageYOffset >= height - window.innerHeight - 10) {
+      if (this.increasePageIndex()) {
+        this.loadMore(url)
+      }
     }
-  }
-
-  // To remove duplication, we scroll to a bit upper.
-  // Feels weird, but it's the most simple way
-  scrollToUp() {
-    const wantedPosition = window.pageYOffset - 100
-    window.scrollTo(window.pageXOffset, wantedPosition)
   }
 
   loadMore(url) {
@@ -49,5 +44,13 @@ export default class extends Controller {
         this.postsTarget.insertAdjacentHTML("beforeend", json.posts)
         this.pagyTarget.innerHTML = json.pagy
       })
+  }
+
+  // It might raise a problem
+  increasePageIndex() {
+    const active = this.pagyTarget.querySelector(".active")
+    this.pageValue++
+    if (active.textContent >= this.pageValue) return false
+    return true
   }
 }

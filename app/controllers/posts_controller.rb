@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   # GET /gonderi or /gonderi.json
   def index
-    @pagy, @posts = pagy Post.all
+    @pagy, @posts = pagy Post.order("created_at DESC")
 
     respond_to do |format|
       format.html

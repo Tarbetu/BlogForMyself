@@ -11,7 +11,22 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1 or /categories/1.json
   def show
-    @pagy, @category_posts = pagy @category.posts
+    @pagy, @category_posts = pagy @category.posts.order("created_at DESC")
+
+    # This part is just copy-paste from posts#index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          posts: render_to_string(
+            PostListComponent.new(posts: @category_posts, pagy: @pagy),
+            formats: [:html],
+            layout: false
+          ),
+          pagy: view_context.pagy_nav(@pagy)
+        }
+      end
+    end
   end
 
   # GET /categories/new
