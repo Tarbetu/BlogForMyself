@@ -8,7 +8,6 @@ export default class extends Controller {
   static targets = ["posts", "pagy"]
   static values  = { page: Number }
 
-  // İşin yoksa fetch yaz :(
   scrollIt() {
     const nextPage = this.pagyTarget.querySelector("a[rel='next']")
     if (nextPage == null) return
@@ -25,10 +24,21 @@ export default class extends Controller {
     )
 
     if (window.pageYOffset >= height - window.innerHeight - 10) {
-      if (this.increasePageIndex()) {
-        this.loadMore(url)
-      }
+      const freezeScrolling = this.freezeScroll()
+      this.loadMore(url)
+      clearInterval(freezeScrolling)
     }
+  }
+
+  // To avoid reloading the same content,
+  // We are forcing to window for staying at the same place
+  freezeScroll() {
+    const wantedXPosition = window.pageXOffset
+    const wantedYPosition = window.pageYOffset - 150
+
+    return setInterval(() => {
+      window.scrollTo(window.wantedXPosition, wantedYPosition)
+    }, 50)
   }
 
   loadMore(url) {
@@ -44,13 +54,5 @@ export default class extends Controller {
         this.postsTarget.insertAdjacentHTML("beforeend", json.posts)
         this.pagyTarget.innerHTML = json.pagy
       })
-  }
-
-  // It might raise a problem
-  increasePageIndex() {
-    const active = this.pagyTarget.querySelector(".active")
-    this.pageValue++
-    if (active.textContent >= this.pageValue) return false
-    return true
   }
 }
