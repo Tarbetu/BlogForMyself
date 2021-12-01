@@ -11,6 +11,8 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   %body.dark:bg-black.dark:bg-opacity-90.dark:text-gray-100
+    - flash.each do |_, message|
+      = render NotificationComponent.new(message)
     - categories = Category.all.filter_map { |category| link_to category.name, category unless category.name == "Hakkında" }
     = render NavbarComponent.new(list_of_links: categories) do
       = link_to "Hakkında", Category.find_by(name: "Hakkında")

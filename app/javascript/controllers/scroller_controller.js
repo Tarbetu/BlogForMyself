@@ -8,6 +8,13 @@ export default class extends Controller {
   static targets = ["posts", "pagy"]
   static values  = { page: Number }
 
+  // For the reloading
+  connect() {
+    window.onload = () => {
+      window.scrollTo(0,0)
+    }
+  }
+
   scrollIt() {
     const nextPage = this.pagyTarget.querySelector("a[rel='next']")
     if (nextPage == null) return
@@ -37,8 +44,8 @@ export default class extends Controller {
     const wantedYPosition = window.pageYOffset - 150
 
     return setInterval(() => {
-      window.scrollTo(window.wantedXPosition, wantedYPosition)
-    }, 50)
+      window.scrollTo(wantedXPosition, wantedYPosition)
+    }, 5)
   }
 
   loadMore(url) {

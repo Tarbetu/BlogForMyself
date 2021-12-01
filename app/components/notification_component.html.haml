@@ -1,0 +1,8 @@
+.sticky.top-0
+  .flex.justify-between.bg-gradient-to-r.from-red-800.to-pink-800.text-gray-100.text-center{ 
+    "data-controller": "hider",
+    "data-hider-target": "self"
+  }
+    .animate-spin
+    = @message
+    %a.cursor-pointer.text-center.mx-2{"data-action": "hider#close"} x
