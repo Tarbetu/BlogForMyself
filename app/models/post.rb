@@ -6,6 +6,7 @@
 # When a post is created, the "append_new_post" method updates the page
 class Post < ApplicationRecord
   belongs_to :category
+  has_many  :comments
   validates :title, presence: true
   validates :body, length: { minimum: 100 }
   has_rich_text :body

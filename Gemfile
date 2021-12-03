@@ -27,9 +27,12 @@ gem "pagy", "~> 5.5"
 gem "tailwindcss-rails", "~> 0.5.1"
 gem "view_component"
 
-# Some improvement
+# Some database improvement
 gem 'pg_query'
 gem 'prosopite'
+
+# i18
+gem 'rails-i18n', '~> 6.0.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

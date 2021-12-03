@@ -1,6 +1,7 @@
 .container
-  -# Resimleri güncelle
-  %p.container= nil
   .text-center.my-6= render HeaderComponent.new.with_content(@post.title)
   %article.p-3.text-medium.trix-content.bg-gray-300.dark:bg-black.antialised.rounded= @post.body
--# Yorumlar eklenecek ;)
+  - if @post.comments.length > 0
+    .mt-7= render HeaderComponent.new.with_content("Güzide Yorumlarımız")
+    .flex.flex-col.divide-y.divide-opacity-25= render CommentComponent.with_collection(@post.comments)
+  = render CommentFormComponent.new(comment: [@post, @post.comments.build])

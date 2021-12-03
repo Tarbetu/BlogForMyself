@@ -1,0 +1,5 @@
+= helpers.form_with model: @comment, class:"my-8 flex flex-col" do |form|
+  = render HeaderComponent.new.with_content("Yorum yaz!")
+  = form.text_field :commenter, placeholder: "İsim", class: "appearance-none bg-transparent border-none tracking-widest font-light text-lg sm:text-xl"
+  = form.text_area :body, placeholder: "Yorumunuz", class: "appearance-none bg-transparent border-none"
+  = form.submit "Gönder gitsin", class: "bg-gray-200 dark:bg-black hover:bg-pink-900 hover:text-red-400 hover:border-none"

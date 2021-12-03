@@ -3,10 +3,10 @@
     .container
       = form.text_field :title, class: "bg-transparent focus:bg-gray-200 focus:text-black border-0 border-b-2 mb-2 tracking-widest font-light text-2xl"
       = form.rich_text_area :body, class: "dark:bg-black"
-      .flex.justify-between.my-2
-        = form.select :category_id, Category.all.map { |i| [i.name, i.id] }, { }, { class: "form-select dark:text-black rounded" }
-        .flex
-          %a.mr-2.hover:bg-gray-700.bg-black.p-2.rounded.antialised.text-white{"data-action": "editor#toggleMenu"} Yeni kategori ekle
+      .flex.flex-col.sm:flex-row.sm:justify-between.my-2
+        = form.select :category_id, Category.all.map { |i| [i.name, i.id] }, { }, { class: "mb-4 sm:my-0 appearance-none bg-transparent border-0 border-b-2 border-solid" }
+        .flex.flex-col.sm:flex-row
+          %a.sm:mr-2.hover:bg-gray-700.bg-black.p-2.rounded.antialised.text-white{"data-action": "editor#toggleMenu"} Yeni kategori ekle
           = form.submit "Kaydet", class: "hover:bg-pink-100 hover:text-red-900 text-white bg-black p-2 rounded antialised"
   = turbo_frame_tag "newCategory", "data-editor-target": "newCategoryMenu", src: new_category_path, class: "hidden m-8" do |i|
     #{render HeaderComponent.new.with_content("Yükleniyor")}
