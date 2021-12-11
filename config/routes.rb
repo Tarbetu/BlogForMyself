@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root "posts#index"
+  root "categories#index"
 
   # The route names are Turkish
   # Actually, the "resources" method should take a plural argument

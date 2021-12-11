@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-# :nodoc:
+# This controller manages the Category pages.
+# Look for more information in app/models/category.rb
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
   before_action :require_login, except: %i[index show]
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.all
+    @pagy, @posts = pagy Post.limit(3)
+    @category_pagy, @categories = pagy Category.where.not(name: "Hakkında")
   end
 
   # GET /categories/1 or /categories/1.json

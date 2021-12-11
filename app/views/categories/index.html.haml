@@ -1,6 +1,12 @@
-.w-full
-  .flex.justify-between.items-center
-    %h1.text-lg.font-bold.text-4xl Categories
-    = link_to 'New category', new_category_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"
-  #categories.min-w-full
-    = render @categories
+.w-full.container.divide-y.hover:divide-double
+  %p.text-center.mb-4.antialised.font-sans.font-light
+    Adım Emre. Kendi kafamca bir şeyler yazıyorum ve kafayı uzun bir süredir edebiyat ile yazılım ile bozdum. Bir tane de yazdığım ancak yayınla(-ya)madığım bir bilimkurgu kitabım var. Geveze bir adam olsam da, kendimi tarif ederken ne yazık ki yaratıcı olamıyorum.
+  .container.flex.flex-col
+    = render HeaderComponent.new.with_content "Son gönderiler"
+    = render PostListComponent.new(posts: @posts, pagy: @pagy)
+    = link_to "diğer güzel şeyler...", posts_path
+  .container.flex.flex-col
+    - @categories.each do |category|
+      = render HeaderComponent.new.with_content "#{category.name} kategorisinden son gönderi"
+      -# Okay, this code smells. I just looked for a easy way to saving DRY principle.
+      = render PostListComponent.new(posts: category.posts.where(id: category.posts.last.id), pagy: @category_pagy)
