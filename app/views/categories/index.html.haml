@@ -9,4 +9,4 @@
     - @categories.each do |category|
       = render HeaderComponent.new.with_content "#{category.name} kategorisinden son gönderi"
       -# Okay, this code smells. I just looked for a easy way to saving DRY principle.
-      = render PostListComponent.new(posts: category.posts.where(id: category.posts.last.id), pagy: @category_pagy)
+      = render PostListComponent.new(posts: category.posts.order(created_at: :desc).limit(1), pagy: @category_pagy)
