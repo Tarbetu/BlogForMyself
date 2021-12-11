@@ -71,3 +71,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "clearance"
 gem "image_processing", "~> 1.12"
+
+gem "mina", "~> 1.2"
