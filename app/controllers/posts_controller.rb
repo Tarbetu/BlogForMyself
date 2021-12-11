@@ -5,6 +5,7 @@
 # While editing or creating a new post, the post must be auto-saved by server.
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :require_login, except: %i[index show]
 
   unless Rails.env.production?
     before_action do

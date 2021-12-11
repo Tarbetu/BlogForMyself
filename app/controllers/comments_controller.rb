@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
+# Look at app/models/models.rb for more information.
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_comment, only: %i[show edit update destroy]
+  before_action :require_login, only: %i[edit update destroy]
 
   # GET /comments or /comments.json
   def index
@@ -7,8 +11,7 @@ class CommentsController < ApplicationController
   end
 
   # GET /comments/1 or /comments/1.json
-  def show
-  end
+  def show; end
 
   # GET /comments/new
   def new
@@ -16,8 +19,7 @@ class CommentsController < ApplicationController
   end
 
   # GET /comments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /comments or /comments.json
   def create
