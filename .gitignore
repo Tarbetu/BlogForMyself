@@ -40,3 +40,6 @@ yarn-debug.log*
 Session.vim
 yapılacak.txt
 app/assets/images/fallback_picture.jpg
+
+# There are some private information about my server
+config/deploy.rb

@@ -68,8 +68,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
 gem "clearance"
 gem "image_processing", "~> 1.12"
 
-gem "mina", "~> 1.2"
+gem "mina", "~> 1.2", require: false
+gem "mina-puma", require: false
