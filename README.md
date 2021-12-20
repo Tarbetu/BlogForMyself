@@ -14,4 +14,4 @@ Rails for Backend, Postgresql for database, Stimulus and Turbo for Frontend.
 
 # How to setup?
 
-There is [https://github.com/mina-deploy/mina](Mina) in the Gemfile. You just need to prepare a "config/deploy.rb" if you will use Mina. (I won't share mine) You can use Capistrano or other deploying tools. Just use what do you want. Install PostgreSQL on the deploying target and use a web server.
+There is [Mina](https://github.com/mina-deploy/mina) in the Gemfile. You just need to prepare a "config/deploy.rb" if you will use Mina. (I won't share mine) You can use Capistrano or other deploying tools. Just use what do you want. Install PostgreSQL on the deploying target and use a web server.
