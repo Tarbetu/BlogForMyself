@@ -290,7 +290,8 @@ DEPENDENCIES
   rails-i18n (~> 6.0.0)
   sass-rails (>= 6)
   selenium-webdriver
-  spring
+  spring (~> 3.0.0)
+  sprockets-rails
   tzinfo-data
   view_component
   web-console (>= 4.1.0)
