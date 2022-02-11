@@ -1,7 +1,7 @@
 <nav 
   class="flex justify-between bg-black border-b border-gray-100 dark:border-gray-700 p-2 text-gray-200"
   data-controller="navbar">
-  <div class="container">
+  <div class="container flex items-center">
     <div class="flex sm:hidden" data-action="click->navbar#toggleMenu">
       <%= render LinkComponent.new.with_content(
         render MenuIconComponent.new
