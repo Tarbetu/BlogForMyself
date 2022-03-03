@@ -6,9 +6,9 @@
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
-    -# = stylesheet_link_tag 'application', media: 'all'
-    = stylesheet_pack_tag "application", media: "all", "data-turbo-track": "reload"
-    = javascript_pack_tag 'application'
+    = stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload"
+    = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
+    = javascript_importmap_tags
   %body.dark:bg-black.dark:bg-opacity-90.dark:text-gray-100
     - flash.each do |_, message|
       = render NotificationComponent.new(message)
