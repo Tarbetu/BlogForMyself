@@ -18,7 +18,5 @@ module Blog
     #
     config.time_zone = 'Istanbul'
     # config.eager_load_paths << Rails.root.join("extras")
-
-    config.hosts << /.*\.emrecansuster\.com/
   end
 end
