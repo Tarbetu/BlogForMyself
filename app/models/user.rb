@@ -5,13 +5,5 @@
 class User < ApplicationRecord
   include Clearance::User
 
-  after_create :confirm_user
-
   def send_confirmation_email; end
-
-  private
-
-  def confirm_user
-    confirm_email!
-  end
 end
