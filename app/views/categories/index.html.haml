@@ -1,6 +1,6 @@
 .w-full.container.divide-y.hover:divide-double
   %p.text-center.mb-4.antialised.font-sans.font-light
-    Adım Emre. Kendi kafamca bir şeyler yazıyorum ve kafayı uzun bir süredir edebiyat ile yazılım ile bozdum. Bir tane de yazdığım ancak yayınla(-ya)madığım bir bilimkurgu kitabım var. Geveze bir adam olsam da, kendimi tarif ederken ne yazık ki yaratıcı olamıyorum.
+    Adım Emre. Kendi kafamca bir şeyler yazıyorum ve kafayı uzun bir süredir edebiyat ile yazılım ile bozdum. Bir tane de yazdığım ancak yayınla(-ya)madığım bir bilimkurgu kitabım var. Geveze bir adam olsam da kendimi tarif ederken ne yazık ki yaratıcı olamıyorum.
   .container.flex.flex-col
     = render HeaderComponent.new.with_content "Son gönderiler"
     = render PostListComponent.new(posts: @posts, pagy: @pagy)
