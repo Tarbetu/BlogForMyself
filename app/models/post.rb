@@ -11,8 +11,6 @@ class Post < ApplicationRecord
   validates :body, length: { minimum: 100 }
   has_rich_text :body
 
-  after_create_commit :append_new_post
-
   # The main problem with these methods causes N+1 queries.
   # The "ActiveText" things cause this.
   def preview_text
@@ -23,16 +21,16 @@ class Post < ApplicationRecord
 
     plain_text.each do |i|
       next if i.blank?
-      return i unless i.starts_with?("[") && i.ends_with?("]")
+      return i unless i.starts_with?('[') && i.ends_with?(']')
     end
 
     # Turkish: Error while creating post preview
-    "Gönderi ön izlemesi oluşturulurken hata oluştu"
+    'Gönderi ön izlemesi oluşturulurken hata oluştu'
   end
 
   def preview_image
     picture = body.embeds.find(&:image?)
 
-    picture || "fallback_picture.jpg"
+    picture || 'fallback_picture.jpg'
   end
 end
