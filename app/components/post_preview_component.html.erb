@@ -1,18 +1,19 @@
-<div 
+<div
   class="flex flex-col rounded border-black bg-gray-300 dark:bg-black lg:w-3/4 m-4"
   id="<%= dom_id @post %>">
-  <div class="w-full h-auto object-cover">
-    <%= image_tag @picture, alt: "#{@title}" %>
-  </div>
-  <div class="flex flex-col m-6">  
-    <div class="lowercase text-right">
-      <%= render HeaderComponent.new.with_content(@post.title) %>
+  <%= link_to @post, "data-turbo-frame":"_top" do %>
+    <div class="w-auto h-80 object-none">
+      <%= image_tag @picture, alt: "#{@title}" %>
     </div>
-   <div class="flex flex-col justify-between text-gray-700 dark:text-gray-200">
-      <div class="text-base antialised text-lg">
-        <%= @preview_text %>
+    <div class="flex flex-col m-6">
+      <div class="lowercase text-right">
+        <%= render HeaderComponent.new.with_content(@post.title) %>
       </div>
-      <%= link_to "...devamı", @post, "data-turbo-frame":"_top" %>
-   </div>
+     <div class="flex flex-col justify-between text-gray-700 dark:text-gray-200">
+        <div class="text-base antialised text-lg">
+          <%= @preview_text %>
+        </div>
+     </div>
+  <% end %>
   </div>
 </div>
