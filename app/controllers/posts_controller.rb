@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   # GET /gonderi or /gonderi.json
   def index
-    @pagy, @posts = pagy Post.order("created_at DESC")
+    @pagy, @posts = pagy Post.order('created_at DESC').with_rich_text_content_and_embeds
 
     respond_to do |format|
       format.html
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
+        format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: "Post was successfully updated." }
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -79,7 +79,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to gonderi_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to gonderi_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
