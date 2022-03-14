@@ -2,7 +2,7 @@
   class="flex flex-col rounded border-black bg-gray-300 dark:bg-black lg:w-3/4 m-4"
   id="<%= dom_id @post %>">
   <%= link_to @post, "data-turbo-frame":"_top" do %>
-    <div class="w-auto h-80 object-cover">
+    <div class="w-auto h-fit object-cover">
       <%= image_tag @picture, alt: "#{@title}" %>
     </div>
     <div class="flex flex-col m-6">
