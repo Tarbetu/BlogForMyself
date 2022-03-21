@@ -4,12 +4,12 @@ module ApplicationHelper
   include Pagy::Frontend
 
   def page_title
-    seperator = ' - '
+    seperator = '-'
     name = 'Emrecan Şuşter'
     if @post
-      @post.title + seperator + name
+      "#{@post.title} #{seperator} #{name}"
     elsif @category
-      @category.name + seperator + name
+      "#{@category.name} #{seperator} #{name}"
     else
       name
     end
