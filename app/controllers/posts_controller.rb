@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   # GET /gonderi or /gonderi.json
   def index
-    @pagy, @posts = pagy Post.order('created_at DESC').with_rich_text_content_and_embeds
+    @pagy, @posts = pagy Post.order('created_at DESC').with_rich_text_body_and_embeds
 
     respond_to do |format|
       format.html
