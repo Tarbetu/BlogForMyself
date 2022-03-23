@@ -30,7 +30,8 @@ class PostsController < ApplicationController
             formats: [:html],
             layout: false
           ),
-          pagy: view_context.pagy_nav(@pagy)
+          pagy: view_context.pagy_nav(@pagy),
+          page: @pagy.page
         }
       end
     end

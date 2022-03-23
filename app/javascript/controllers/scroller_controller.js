@@ -5,7 +5,7 @@ import { Controller } from "@hotwired/stimulus"
 // Thanks for GoRails :)
 // Connects to data-controller="scroller"
 export default class extends Controller {
-  static targets = ["posts", "pagy"]
+  static targets = ["posts", "pagy" ]
   static values  = { page: Number }
 
   // For the reloading
@@ -31,24 +31,13 @@ export default class extends Controller {
     )
 
     if (window.pageYOffset >= height - window.innerHeight - 10) {
-      const freezeScrolling = this.freezeScroll()
       this.loadMore(url)
-      clearInterval(freezeScrolling)
     }
   }
 
-  // To avoid reloading the same content,
-  // We are forcing to window for staying at the same place
-  freezeScroll() {
-    const wantedXPosition = window.pageXOffset
-    const wantedYPosition = window.pageYOffset - 150
-
-    return setInterval(() => {
-      window.scrollTo(wantedXPosition, wantedYPosition)
-    }, 1)
-  }
-
   loadMore(url) {
+    currentPage = this.pagyTarget.querySelector(".active").innerText
+
     const args = {
       method: "GET",
       headers: {
@@ -58,8 +47,10 @@ export default class extends Controller {
     fetch(url, args)
       .then((data) => data.json())
       .then((json) => {
-        this.postsTarget.insertAdjacentHTML("beforeend", json.posts)
-        this.pagyTarget.innerHTML = json.pagy
+        if (json.page !== currentPage) {
+          this.postsTarget.insertAdjacentHTML("beforeend", json.posts)
+          this.pagyTarget.innerHTML = json.pagy
+        }
       })
   }
 }
