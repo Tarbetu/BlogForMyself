@@ -45,7 +45,7 @@ export default class extends Controller {
 
     return setInterval(() => {
       window.scrollTo(wantedXPosition, wantedYPosition)
-    }, 5)
+    }, 1)
   }
 
   loadMore(url) {
