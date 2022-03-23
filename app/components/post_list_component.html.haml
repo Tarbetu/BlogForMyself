@@ -1,6 +1,5 @@
 .flex.flex-col.justify-center.items-center.container#postList{ |
   "data-controller": "scroller",
-  "data-action":"scroll@window->scroller#scrollIt",
   "data-scroller-target": "posts"
 }
   = render PostPreviewComponent.with_collection(@posts)

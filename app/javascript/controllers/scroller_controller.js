@@ -1,56 +1,50 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Mostly taken from this link: 
+// Mostly taken from this link:
 // https://github.com/gorails-screencasts/infinite-scroll-stimulus-js/blob/master/app/javascript/controllers/infinite_scroll_controller.js
 // Thanks for GoRails :)
 // Connects to data-controller="scroller"
 export default class extends Controller {
-  static targets = ["posts", "pagy" ]
-  static values  = { page: Number }
+  static targets = ["posts", "pagy"];
 
-  // For the reloading
+  initialize() {
+    this.observer = new IntersectionObserver(
+      (posts) => this.processScrolling(posts),
+      { rootMargin: "200px" }
+    );
+  }
+
   connect() {
-    window.onload = () => {
-      window.scrollTo(0,0)
-    }
+    this.observer.observe(this.pagyTarget);
   }
 
-  scrollIt() {
-    const nextPage = this.pagyTarget.querySelector("a[rel='next']")
-    if (nextPage == null) return
-    const url = nextPage.href
-
-    const body = document.body
-    const html = document.documentElement
-    const height = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight
-    )
-
-    if (window.pageYOffset >= height - window.innerHeight - 10) {
-      this.loadMore(url)
-    }
+  disconnect() {
+    this.observer.unobserve(this.pagyTarget);
   }
 
-  loadMore(url) {
-    currentPage = this.pagyTarget.querySelector(".active").innerText
+  processScrolling(posts) {
+    posts.forEach(() => {
+      this.loadMore();
+    });
+  }
+
+  loadMore() {
+    const nextPage = this.pagyTarget.querySelector("a[rel='next']");
+    if (nextPage == null) return;
+    const url = nextPage.href;
 
     const args = {
       method: "GET",
       headers: {
-        "Accept": "application/json"
-      }
-    }
+        Accept: "application/json",
+      },
+    };
+
     fetch(url, args)
       .then((data) => data.json())
       .then((json) => {
-        if (json.page !== currentPage) {
-          this.postsTarget.insertAdjacentHTML("beforeend", json.posts)
-          this.pagyTarget.innerHTML = json.pagy
-        }
-      })
+        this.postsTarget.insertAdjacentHTML("beforeend", json.posts);
+        this.pagyTarget.innerHTML = json.pagy;
+      });
   }
 }
