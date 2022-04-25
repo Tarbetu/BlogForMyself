@@ -73,4 +73,7 @@ gem 'image_processing', '~> 1.12'
 gem 'mina', '~> 1.2', require: false
 gem 'mina-puma', require: false
 
+# For the books which written in Markdown
+gem "redcarpet"
+
 gem 'sprockets-rails'
