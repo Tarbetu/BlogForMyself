@@ -41,6 +41,9 @@ Session.vim
 yapılacak.txt
 app/assets/images/fallback_picture.jpg
 
+# Redis Dump
+dump.rdb
+
 # There are some private information about my server
 config/deploy.rb
 
