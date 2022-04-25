@@ -3,7 +3,13 @@
   id="<%= dom_id @post %>">
   <%= link_to @post, "data-turbo-frame":"_top" do %>
     <div class="w-auto h-fit object-cover">
-      <%= image_tag @picture, alt: "#{@title}" %>
+      <%=
+        image_tag @picture&.variant(
+          resize_to_fit: [1600, 900], saver: { strip: true, quality: 70 }
+        ) ||
+        "fallback_picture.jpg",
+        alt: "#{@title}"
+      %>
     </div>
     <div class="flex flex-col m-6">
       <div class="lowercase text-right">

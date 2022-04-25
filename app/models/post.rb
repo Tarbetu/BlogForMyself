@@ -19,9 +19,9 @@ class Post < ApplicationRecord
 
     plain_text = plain_text.split("\n")
 
-    plain_text.each do |i|
-      next if i.blank?
-      return i unless i.starts_with?('[') && i.ends_with?(']')
+    plain_text.each do
+      next if _1.blank?
+      return _1 unless _1.starts_with?('[') && _1.ends_with?(']')
     end
 
     # Turkish: Error while creating post preview
@@ -29,8 +29,6 @@ class Post < ApplicationRecord
   end
 
   def preview_image
-    picture = body.embeds.find(&:image?)
-
-    picture || 'fallback_picture.jpg'
+    body.embeds.find(&:image?)
   end
 end
