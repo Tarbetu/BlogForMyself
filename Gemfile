@@ -76,4 +76,7 @@ gem 'mina-puma', require: false
 # For the books which written in Markdown
 gem "redcarpet"
 
+# The Cache
+gem "redis", "~> 4.0"
+
 gem 'sprockets-rails'
