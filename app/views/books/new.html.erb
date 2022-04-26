@@ -1,7 +1,13 @@
 <div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New book</h1>
+  <%= render HeaderComponent.new.with_content("Yeni Kitap Oluştur!"), class: "p-2" %>
+  <p class="p-4">
+  İsim, projenin ana dizinindeki markdown dizinin altındaki bölümleri barındıran dizinle aynı olmalıdır. Örneğin:
+  <ul class="p-2 list-disc hover:list-none">
+    <li>Kitap adı: Kara Tilki Hiyerarşisi</li>
+    <li>Konum: <%= Rails.root %>/markdown/karatilkihiyerarsisi</li>
+  </ul>
+  <p class="p-8">Veritabanına kitap adı burada belirtildiği gibi girecektir, ancak dizin aranırken büyük harfler küçük harfe dönüştürülecek, boşluklar silinecek ve Türkçe harfler muadili harflerle değiştirilecektir.</p>
+  </p>
 
   <%= render "form", book: @book %>
-
-  <%= link_to 'Back to books', books_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

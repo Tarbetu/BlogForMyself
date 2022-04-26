@@ -48,7 +48,7 @@ class BooksController < ApplicationController
 
   private
     def set_book
-      @book = Book.find(params[:id])
+      @book = Book.find_by(name: params[:name])
     end
 
     def book_params
