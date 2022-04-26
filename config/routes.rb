@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :books
   root "categories#index"
 
+  resources :books, shallow: true, param: :name, path: "", except: %i[index]
   # The route names are Turkish
   # Actually, the "resources" method should take a plural argument
   # like "kategoriler" or "gonderiler" (the -ler is plural suffix)

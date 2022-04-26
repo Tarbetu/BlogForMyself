@@ -47,5 +47,8 @@ dump.rdb
 # There are some private information about my server
 config/deploy.rb
 
+# I want to hide my content of books
+markdown/*
+
 /app/assets/builds/*
 !/app/assets/builds/.keep
