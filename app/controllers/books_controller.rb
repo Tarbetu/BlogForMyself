@@ -54,4 +54,9 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:name)
     end
+
+    def set_book_path(book)
+      markdown_directory_name = I18n.transliterate(book.name).downcase.delete(" ")
+      "#{Rails.root}/#{markdown_directory_name}/"
+    end
 end
