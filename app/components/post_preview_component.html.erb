@@ -5,7 +5,7 @@
     <div class="w-auto h-fit object-cover">
       <%=
         image_tag @picture&.variant(
-          resize_to_fit: [1600, 900], convert: "webp", saver: { strip: true, quality: 90 }
+          resize_to_fit: [1600, 900], convert: "webp", saver: { strip: true, quality: 80 }
         ) ||
         "fallback_picture.jpg",
         alt: "#{@title}"
