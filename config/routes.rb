@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :books
-  root "categories#index"
+  root 'categories#index'
 
   # The route names are Turkish
   # Actually, the "resources" method should take a plural argument
@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :books, shallow: true, param: :name, path: "", except: %i[index]
+  resources :books, param: :name, path: '', except: %i[index edit update destroy]
+  get '/:name/:chapter', to: 'books#show'
 end

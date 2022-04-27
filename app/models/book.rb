@@ -17,10 +17,17 @@
 class Book < ApplicationRecord
   validate :book_path_exist?
 
+  def self.find_by_path_name(path_name)
+    all.select { |book| book.name.to_path_name == path_name }.first
+  end
+
   def cache_markdowns
+    return if Rails::Cache.read(:"#{cache_key_prefix}.content")
+
     chapters.each_with_index do |item, index|
-      Rails.cache.write(:"#{cache_key_prefix}.#{index}", item)
+      Rails::Cache.write(:"#{cache_key_prefix}.#{index}", item)
     end
+    collect_keys
   end
 
   def to_path_name
@@ -33,9 +40,16 @@ class Book < ApplicationRecord
     chapter_paths.map { File.read(_1) }
   end
 
-  def chapter(chapter_number = 0)
-    Rails.cache.read(:"#{cache_key_prefix}.#{chapter_number}")
+  def chapter(chapter_number = nil)
+    if chapter_number.nil? ||
+       Rails::Cache.read("#{cache_key_prefix}.content.length") - 1 < chapter_number
+      chapter_number = 0
+    end
+
+    Rails::Cache.read(:"#{cache_key_prefix}.#{chapter_number}")
   end
+
+  private
 
   def collect_keys
     keys = []
@@ -48,11 +62,11 @@ class Book < ApplicationRecord
       key_num += 1
     end
 
-    Rails.cache.write(:"#{cache_key_prefix}.content", keys)
-    keys.length
+    content_key = :"#{cache_key_prefix}.content"
+    Rails::Cache.write(content_key, keys)
+    Rails::Cache.write("#{content_key}.length", keys.length)
+    content_key
   end
-
-  private
 
   def cache_key_prefix
     "books.#{to_path_name}"
