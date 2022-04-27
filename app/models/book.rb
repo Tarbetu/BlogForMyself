@@ -17,9 +17,13 @@ class Book < ApplicationRecord
     chapter_paths.map { File.read(_1) }
   end
 
-  def cache_keys
+  def chapter(chapter_number = 0)
+    Rails.cache.read(:"#{cache_key_prefix}.#{chapter_number}")
+  end
+
+  def collect_keys
     keys = []
-    key_num = 1
+    key_num = 0
 
     loop do
       break if Rails.cache.read(:"#{cache_key_prefix}.#{key_num}").nil?
@@ -27,7 +31,9 @@ class Book < ApplicationRecord
       keys << :"#{cache_key_prefix}.#{key_num}"
       key_num += 1
     end
-    keys
+
+    Rails.cache.write(:"#{cache_key_prefix}.content", keys)
+    keys.length
   end
 
   private
@@ -37,13 +43,13 @@ class Book < ApplicationRecord
   end
 
   def chapter_paths
-    Dir[book_path].select do
-      _1.split('/').last.start_with('Bölüm', 'Önsöz', 'Part', 'Chapter')
-    end
+    chapters = Dir[book_path].map(&:downsize)
+    chapter.unshift(chapter.delete('önsöz.md')) # moves preface to head
+    chapters.compact
   end
 
   def book_path
-    "#{Rails.root}/#{to_path_name}/"
+    "#{Rails.root}/#{to_path_name}/book"
   end
 
   def book_path_exist?
