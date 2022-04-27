@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   before_action :set_book_and_chapter, only: %i[show]
 
   def show
-    @keys = cache_markdowns
+    @keys = @book.cache_markdowns
   end
 
   def new

@@ -18,38 +18,33 @@ class Book < ApplicationRecord
   validate :book_path_exist?
 
   def self.find_by_path_name(path_name)
-    all.select { |book| book.name.to_path_name == path_name }.first
+    all.select { |book| (book.path_name) == path_name }.first
   end
 
   def cache_markdowns
-    return if Rails::Cache.read(:"#{cache_key_prefix}.content")
+    return if Rails.cache.read(:"#{cache_key_prefix}.content")
 
     chapters.each_with_index do |item, index|
-      Rails::Cache.write(:"#{cache_key_prefix}.#{index}", item)
+      Rails.cache.write(:"#{cache_key_prefix}.#{index}", item)
     end
     collect_keys
   end
 
-  def to_path_name
-    path_name = I18n.transliterate(name).downcase
-    path_name.delete(' ')
-    path_name
+  def path_name
+    I18n.transliterate(name).downcase.delete(' ')
   end
+
+  def chapter(chapter_number = nil)
+    chapter_number ||= 0
+
+    Rails.cache.read(:"#{cache_key_prefix}.#{chapter_number}")
+  end
+
+  private
 
   def chapters
     chapter_paths.map { File.read(_1) }
   end
-
-  def chapter(chapter_number = nil)
-    if chapter_number.nil? ||
-       Rails::Cache.read("#{cache_key_prefix}.content.length") - 1 < chapter_number
-      chapter_number = 0
-    end
-
-    Rails::Cache.read(:"#{cache_key_prefix}.#{chapter_number}")
-  end
-
-  private
 
   def collect_keys
     keys = []
@@ -63,26 +58,30 @@ class Book < ApplicationRecord
     end
 
     content_key = :"#{cache_key_prefix}.content"
-    Rails::Cache.write(content_key, keys)
-    Rails::Cache.write("#{content_key}.length", keys.length)
+    Rails.cache.write(content_key, keys)
+    Rails.cache.write("#{content_key}.length", keys.length)
     content_key
   end
 
   def cache_key_prefix
-    "books.#{to_path_name}"
+    "books.#{path_name}"
   end
 
   def chapter_paths
-    chapters = Dir[book_path].map(&:downsize)
-    chapter.unshift(chapter.delete('önsöz.md')) # moves preface to head
+    chapters = Dir[book_path]
+    chapters.unshift(chapters.delete('Önsöz.md')) # moves preface to head
     chapters.compact
   end
 
   def book_path
-    "#{Rails.root}/#{to_path_name}/book"
+    "#{Rails.root}/markdown/#{path_name}/book/*"
   end
 
   def book_path_exist?
-    errors.add(:book_path, "Markdown klasörü altında #{to_path_name} tanımlanmalıdır!") unless Dir.exist?(book_path)
+    unless Dir.exist?(book_path)
+      errors.add(:book_path,
+                 %(Markdown klasörü altında #{path_name} ve onun da altında 'book' tanımlanmalıdır!
+      Aranan dizin: #{book_path}))
+    end
   end
 end
