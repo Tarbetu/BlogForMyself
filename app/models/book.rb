@@ -1,16 +1,32 @@
 # frozen_string_literal: true
 
+# I wrote my books in Markdown,
+# So I want to publish my books directly from a Markdown file.
+# This model manages these markdown files
+#
+# Assume that we have an book named Hierarchy of Vulpo Noir
+# First,
+# you need to create directory in Rails.root/markdown directory named "hierarchyofvulponoir"
+# This model will look the downcased, blankless and transliterated form of the name
+# Example: #{Rails.root}/markdown/hierarchyofvulponoir
+# Then,
+# you should put markdown files in nested "book" directory in directory which you created
+# #{Rails.root}/markdown/hierarchyofvulponoir/book/Chapter 1.md
+# Finally,
+# You can use cache_markdowns to move files then into Redis and chapter to get them
 class Book < ApplicationRecord
   validate :book_path_exist?
 
   def cache_markdowns
     chapters.each_with_index do |item, index|
-      Rails.cache.write(:"#{cache_key_prefix}.#{index + 1}", item)
+      Rails.cache.write(:"#{cache_key_prefix}.#{index}", item)
     end
   end
 
   def to_path_name
-    I18n.transliterate(name).downcase.delete(' ')
+    path_name = I18n.transliterate(name).downcase
+    path_name.delete(' ')
+    path_name
   end
 
   def chapters
@@ -26,7 +42,7 @@ class Book < ApplicationRecord
     key_num = 0
 
     loop do
-      break if Rails.cache.read(:"#{cache_key_prefix}.#{key_num}").nil?
+      break unless chapter(key_num)
 
       keys << :"#{cache_key_prefix}.#{key_num}"
       key_num += 1
