@@ -68,9 +68,7 @@ class Book < ApplicationRecord
   end
 
   def chapter_paths
-    chapters = Dir[book_path]
-    chapters.unshift(chapters.delete('Önsöz.md')) # moves preface to head
-    chapters.compact
+    Dir[book_path]
   end
 
   def book_path
@@ -78,10 +76,10 @@ class Book < ApplicationRecord
   end
 
   def book_path_exist?
-    unless Dir.exist?(book_path)
-      errors.add(:book_path,
-                 %(Markdown klasörü altında #{path_name} ve onun da altında 'book' tanımlanmalıdır!
+    return if Dir.exist?(book_path)
+
+    errors.add(:book_path,
+               %(Markdown klasörü altında #{path_name} ve onun da altında 'book' tanımlanmalıdır!
       Aranan dizin: #{book_path}))
-    end
   end
 end
