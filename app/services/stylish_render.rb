@@ -16,7 +16,7 @@ class StylishRender < Redcarpet::Render::HTML
   end
 
   def list(contents, _list_type)
-    "<div id='konusma' class='my-2 p-2 bg-black dark:bg-violet-900 rounded text-white'>#{contents}</div>"
+    "<div id='konusma' class='my-2 p-2 bg-black dark:bg-white rounded text-white dark:text-black'>#{contents}</div>"
   end
 
   def list_item(text, _list_type)

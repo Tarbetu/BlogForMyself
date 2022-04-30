@@ -1,0 +1,5 @@
+<div id="nav" class="bg-black text-white rounded flex flex-col hidden p-2 mb-2" data-book-target="index">
+  <% @book.chapters_length.times do %>
+    <%= render BookLinkComponent.new(@book, _1) %>
+  <% end %>
+</div>

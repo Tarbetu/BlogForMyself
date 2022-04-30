@@ -1,9 +1,17 @@
 <div class="mx-auto md:w-2/3 w-full select-none" data-controller="book">
-  <label for="chapters"></label>
-  <select id="chapters" name="chapters">
-    <option value="">_1</option>
-  </select>
-
-  <%= @book.chapters_list %>
+  <%= render BookSidebarTogglerComponent.new %>
+  <%= render BooksSidebarComponent.new(book: @book) %>
   <%= render MarkdownComponent.new(chapter_content: @chapter) %>
+  <div class="flex justify-items-stretch justify-around bg-black text-white">
+    <% if @book.chapter(@chapter_number - 1) %>
+      <%= render LinkComponent.new do %>
+        <%= link_to "Öncesi", @book.chapter_path(@chapter_number - 1) %>
+      <% end %>
+    <% end %>
+    <% if @book.chapter(@chapter_number + 1) %>
+      <%= render LinkComponent.new do %>
+        <%= link_to "Sonrası", @book.chapter_path(@chapter_number + 1) %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

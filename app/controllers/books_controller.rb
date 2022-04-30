@@ -32,6 +32,7 @@ class BooksController < ApplicationController
   def set_book_and_chapter
     @book = Book.find_by_path_name(params[:name])
     @chapter = @book.chapter(params[:chapter])
+    @chapter_number = params[:chapter].to_i
   end
 
   def book_params
