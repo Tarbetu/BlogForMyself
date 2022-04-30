@@ -7,6 +7,9 @@ class BooksController < ApplicationController
 
   def show
     @keys = @book.cache_markdowns
+
+    redirect_to @book.chapter_path if @chapter_number &&
+                                      !((0...@book.chapters_length).cover? @chapter_number)
   end
 
   def new

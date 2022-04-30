@@ -21,8 +21,12 @@ class Book < ApplicationRecord
     all.select { |book| (book.path_name) == path_name }.first
   end
 
-  def chapter_path(chapter_number)
-    "/#{path_name}/#{chapter_number}"
+  def chapter_path(chapter_number = nil)
+    if chapter_number
+      "/#{path_name}/#{chapter_number}"
+    else
+      "/#{path_name}"
+    end
   end
 
   def cache_markdowns
@@ -39,7 +43,7 @@ class Book < ApplicationRecord
   end
 
   def chapter(chapter_number = nil)
-    chapter_number = 0 unless chapter_number || chapter_number < chapters_length
+    chapter_number ||= 0
 
     if Rails.env.development?
       chapters[chapter_number.to_i]
