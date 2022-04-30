@@ -1,3 +1,9 @@
-<div class="mx-auto md:w-2/3 w-full">
+<div class="mx-auto md:w-2/3 w-full select-none" data-controller="book">
+  <label for="chapters"></label>
+  <select id="chapters" name="chapters">
+    <option value="">_1</option>
+  </select>
+
+  <%= @book.chapters_list %>
   <%= render MarkdownComponent.new(chapter_content: @chapter) %>
 </div>

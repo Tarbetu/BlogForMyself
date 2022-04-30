@@ -21,9 +21,12 @@ class Book < ApplicationRecord
     all.select { |book| (book.path_name) == path_name }.first
   end
 
+  def chapter_url(chapter_number)
+    link_to "/#{book}/#{chapter_number}"
+  end
+
   def cache_markdowns
-    return if Rails.cache.read(:"#{cache_key_prefix}.content") ||
-              Rails.env.development?
+    return if Rails.cache.read(:"#{cache_key_prefix}.content")
 
     chapters.each_with_index do |item, index|
       Rails.cache.write(:"#{cache_key_prefix}.#{index}", item)
@@ -42,6 +45,14 @@ class Book < ApplicationRecord
       chapters[chapter_number.to_i]
     else
       Rails.cache.read(:"#{cache_key_prefix}.#{chapter_number}")
+    end
+  end
+
+  def chapters_length
+    if Rails.env.development?
+      chapters.length
+    else
+      Rails.cache.read(:"#{cache_key_prefix}.content.length")
     end
   end
 
