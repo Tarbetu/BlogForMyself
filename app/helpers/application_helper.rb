@@ -10,7 +10,7 @@ module ApplicationHelper
       "#{@post.title} #{seperator} #{name}"
     elsif @category
       "#{@category.name} #{seperator} #{name}"
-    elsif @book
+    elsif @book && @chapter_number
       "#{@book.name} - #{@chapter_number.zero? ? 'Önsöz' : @chapter_number}"
     else
       name

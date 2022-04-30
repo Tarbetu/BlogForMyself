@@ -88,11 +88,11 @@ class Book < ApplicationRecord
   end
 
   def chapter_paths
-    Dir[book_path]
+    Dir[book_path + '*']
   end
 
   def book_path
-    "#{Rails.root}/markdown/#{path_name}/book/*"
+    "#{Rails.root}/markdown/#{path_name}/book"
   end
 
   def book_path_exist?
