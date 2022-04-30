@@ -2,7 +2,7 @@
   <%= render BookSidebarTogglerComponent.new %>
   <%= render BooksSidebarComponent.new(book: @book) %>
   <%= render MarkdownComponent.new(chapter_content: @chapter) %>
-  <div class="flex justify-items-stretch justify-around bg-black text-white">
+  <div class="flex justify-items-stretch justify-around items-stretch flex-auto bg-black text-white">
     <% if @book.chapter(@chapter_number - 1) %>
       <%= render LinkComponent.new do %>
         <%= link_to "Öncesi", @book.chapter_path(@chapter_number - 1) %>
