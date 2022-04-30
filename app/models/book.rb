@@ -22,7 +22,8 @@ class Book < ApplicationRecord
   end
 
   def cache_markdowns
-    return if Rails.cache.read(:"#{cache_key_prefix}.content")
+    return if Rails.cache.read(:"#{cache_key_prefix}.content") ||
+              Rails.env.development?
 
     chapters.each_with_index do |item, index|
       Rails.cache.write(:"#{cache_key_prefix}.#{index}", item)
@@ -37,7 +38,11 @@ class Book < ApplicationRecord
   def chapter(chapter_number = nil)
     chapter_number ||= 0
 
-    Rails.cache.read(:"#{cache_key_prefix}.#{chapter_number}")
+    if Rails.env.development?
+      chapters[chapter_number.to_i]
+    else
+      Rails.cache.read(:"#{cache_key_prefix}.#{chapter_number}")
+    end
   end
 
   private
