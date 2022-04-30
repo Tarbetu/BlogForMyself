@@ -36,6 +36,8 @@ class BooksController < ApplicationController
     @book = Book.find_by_path_name(params[:name])
     @chapter = @book.chapter(params[:chapter])
     @chapter_number = params[:chapter].to_i
+  rescue NoMethodError
+    redirect_to root_path
   end
 
   def book_params
