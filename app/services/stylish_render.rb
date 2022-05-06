@@ -15,6 +15,10 @@ class StylishRender < Redcarpet::Render::HTML
     render_component HeaderComponent.new.with_content(text)
   end
 
+  def paragraph(text)
+    "<p class='mb-4'>#{text}</p>"
+  end
+
   def list(contents, _list_type)
     "<div id='konusma' class='my-2 p-2 bg-black dark:bg-white rounded text-white dark:text-black'>#{contents}</div>"
   end
